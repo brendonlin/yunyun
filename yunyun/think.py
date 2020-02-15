@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# think like a robot
+# Think like a robot
 import os
 import time
 from .thinkdata import ThinkData, readExists
@@ -16,7 +16,7 @@ if not os.path.exists(SAVE_DIR):
 
 
 def main():
-    print("程序已启动，请根据提示输入。")
+    print("Start yunyun.")
     query = QuestionFactory()
     title = query.askTitle()
     existsName = common.checkIsExists(SAVE_DIR, title)
@@ -26,19 +26,19 @@ def main():
     if isReadExists:
         filepath = os.path.join(SAVE_DIR, existsName)
         tdata = readExists(filepath, title)
-        print("读取历史记录完毕。")
+        print("Reading exists data complete.")
     else:
-        print("开始创建新的记录。")
+        print("Creating new record.")
         tdata = humanInputData(title)
     tdata.save(SAVE_DIR)
-    print("存储完毕。正在处理数据...")
+    print("Save complete. Start processing data...")
     x = time.time()
     result = tdata.table
     taketime = time.time() - x
     time.sleep(max(1 - taketime, 0))
-    print("处理结束。请查看结果。\n")
+    print("Processing complete. Please see the results.\n")
     time.sleep(0.5)
-    print(f"Topic:{tdata.title}\n")
+    print(f"Theme: {tdata.title}\n")
     print(tdata)
     return result
 
