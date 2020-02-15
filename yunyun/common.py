@@ -1,3 +1,4 @@
+import os
 import csv
 
 
@@ -19,3 +20,11 @@ def readCSV(filepath):
             rows.append(list(row))
     headers = rows.pop(0)
     return rows, headers
+
+
+def checkIsExists(saveDir, title: str):
+    filenames = os.listdir(saveDir)
+    for filename in filenames:
+        if title in filename:
+            return filename
+    return False

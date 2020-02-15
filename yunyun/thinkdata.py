@@ -60,7 +60,7 @@ class ThinkData:
 
     def save(self, saveDir):
         """save data as csv file"""
-        filename = "".join([self.title, uniqueId(), ".csv"])
+        filename = "".join([self.title, ".csv"])
         filepath = os.path.join(saveDir, filename)
         writeCSV(filepath, rows=self.rows, headers=self.headers)
         return filepath
