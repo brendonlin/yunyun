@@ -1,3 +1,4 @@
+import sys
 import os
 import csv
 
@@ -28,3 +29,13 @@ def checkIsExists(saveDir, title: str):
         if title in filename:
             return filename
     return False
+
+
+def catchKeyboardInterrupt(func, *args, **kwargs):
+    def wapper(*args, **kwargs):
+        try:
+            result = func(*args, **kwargs)
+        except KeyboardInterrupt:
+            sys.exit()
+        return result
+    return wapper

@@ -57,3 +57,23 @@ def test_askIsReadExists():
             query = question.QuestionFactory()
             result = query.askIsReadExists(existsName)
             assert result == expectedValue
+
+
+def test_splitStr():
+    cases = [
+        ("a,b,c", ["a", "b", "c"]),
+        ("a , b ,c", ["a", "b", "c"]),
+        ("a q, b ,c", ["a q", "b", "c"]),
+    ]
+    for value, expected in cases:
+        assert question.splitStr(value) == expected
+
+
+def test_formatStr():
+    cases = [
+        ("test", "test"),
+        ("dog and cat", "dog and cat"),
+        ("Where to go?", "where to go"),
+    ]
+    for value, expected in cases:
+        assert question.formatStr(value) == expected

@@ -36,7 +36,7 @@ class ThinkData:
                 feature=self.features[i], weight=self.weights[i]
             )
             featureHeaders.append(header)
-        return ["Compare objects"] + featureHeaders + ["Final score(Sorted)"]
+        return ["Options"] + featureHeaders + ["Final score(Sorted)"]
 
     @property
     def rows(self):

@@ -2,7 +2,7 @@ import re
 
 
 class Question(object):
-    commonAlert = "Incorrect input, please re-enter."
+    commonAlert = "..."
 
     def __init__(self, message, checks=[], parses=[]):
         self.message = message
@@ -13,14 +13,13 @@ class Question(object):
         response = None
         while response is None:
             userInput = getInput(self.message)
-            response = userInput
             isCorrect = True
             if len(self.checks) > 0:
                 isCorrect = all([check(userInput)
                                  for check in self.checks])
             if isCorrect and len(self.parses) > 0:
                 for parse in self.parses:
-                    response = parse(response)
+                    response = parse(userInput)
             if response is None:
                 print(self.commonAlert)
         return response
@@ -39,7 +38,11 @@ class Rules():
 
 
 def splitStr(x):
-    return re.split(",|，", x.replace(" ", ""))
+    return re.split(r"\s*[,，]\s*", x)
+
+
+def formatStr(x):
+    return re.sub(r'[\"\<\>\/\\\*\?\:\"]+', "", x.lower())
 
 
 class QuestionFactory():
@@ -47,8 +50,9 @@ class QuestionFactory():
         question = Question(
             message="What's the theme of this discussion: ",
             checks=[Rules.notEmpty],
-            parses=[lambda x: re.sub(r"[^\w]", "", x)]
+            parses=[formatStr]
         )
+
         result = question.ask()
         return result
 

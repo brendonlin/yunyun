@@ -15,6 +15,7 @@ if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
 
+@common.catchKeyboardInterrupt
 def main():
     print("Start yunyun.")
     query = QuestionFactory()
@@ -33,14 +34,14 @@ def main():
     tdata.save(SAVE_DIR)
     print("Save complete. Start processing data...")
     x = time.time()
-    result = tdata.table
+    # result = tdata.table
     taketime = time.time() - x
     time.sleep(max(1 - taketime, 0))
     print("Processing complete. Please see the results.\n")
     time.sleep(0.5)
     print(f"Theme: {tdata.title}\n")
     print(tdata)
-    return result
+    # return result
 
 
 def humanInputData(title):
