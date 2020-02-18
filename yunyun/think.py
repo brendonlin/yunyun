@@ -2,10 +2,10 @@
 # Think like a robot
 import os
 import time
+import argparse
 from .thinkdata import ThinkData, readExists
 from .question import QuestionFactory
 from . import common
-
 
 USER_PATH = os.path.expanduser("~")
 
@@ -15,8 +15,26 @@ if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
 
+def getVersion():
+    from . import __version__
+    return __version__
+
+
 @common.catchKeyboardInterrupt
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--version",
+                        help="Show the flask version",
+                        action="store_true")
+    args = parser.parse_args()
+    if args.version:
+        version = getVersion()
+        print(version)
+    else:
+        think()
+
+
+def think():
     print("Start yunyun.")
     query = QuestionFactory()
     title = query.askTitle()

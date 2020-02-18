@@ -3,7 +3,7 @@ from unittest.mock import patch
 # from unittest.mock import MagicMock
 
 
-@patch('yunyun.question.getInput', return_value="Choose")
+@patch('yunyun.question.getInput', return_value="choose")
 def test_askTitle(mockclass):
     expectedTitle = mockclass.return_value
     query = question.QuestionFactory()

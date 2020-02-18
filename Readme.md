@@ -10,12 +10,12 @@ pip install yunyun
 
 ## Usage
 
-
-
 ```
 yunyun
 ```
+
 Enter as prompted, for example:
+
 ```
 Start yunyun.
 What's the theme of this discussion: Cat or Dog
